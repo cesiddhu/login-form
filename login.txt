@@ -78,7 +78,6 @@
       }
     });
 
-    // Password validation
     password.addEventListener("input", function () {
       document.getElementById("passError").innerText =
         password.value.length < 6 ? "Minimum 6 characters" : "";
