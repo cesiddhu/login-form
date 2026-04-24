@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 10px;
+    }
+    span {
+      color: red;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+
+  <form id="form">
+    Name: <input type="text" id="name"><br>
+    <span id="nameError"></span><br>
+
+    Email: <input type="text" id="email"><br>
+    <span id="emailError"></span><br>
+
+    Mobile: <input type="text" id="mobile"><br>
+    <span id="mobileError"></span><br>
+
+    Password: <input type="password" id="password"><br>
+    <span id="passError"></span><br>
+
+    Confirm Password: <input type="password" id="confirmPassword"><br>
+    <span id="confirmError"></span><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let mobile = document.getElementById("mobile");
+    let password = document.getElementById("password");
+    let confirmPassword = document.getElementById("confirmPassword");
+
+    // Name validation
+    name.addEventListener("input", function () {
+      document.getElementById("nameError").innerText =
+        name.value.length < 3 ? "Name must be at least 3 characters" : "";
+    });
+
+    // Email validation
+    email.addEventListener("input", function () {
+      document.getElementById("emailError").innerText =
+        email.value.includes("@") ? "" : "Invalid email";
+    });
+
+    // Mobile validation
+    mobile.addEventListener("input", function () {
+      let pattern = /^[0-9]{10}$/;
+      if (!pattern.test(mobile.value)) {
+        document.getElementById("mobileError").innerText =
+          "Enter valid 10-digit mobile number";
+      } else {
+        document.getElementById("mobileError").innerText = "";
+      }
+    });
+
+    // Password validation
+    password.addEventListener("input", function () {
+      document.getElementById("passError").innerText =
+        password.value.length < 6 ? "Minimum 6 characters" : "";
+    });
+
+    // Confirm password validation
+    confirmPassword.addEventListener("input", function () {
+      if (confirmPassword.value !== password.value) {
+        document.getElementById("confirmError").innerText =
+          "Passwords do not match";
+      } else {
+        document.getElementById("confirmError").innerText = "";
+      }
+    });
+  </script>
+</body>
+</html>
